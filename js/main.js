@@ -46,11 +46,25 @@ const initAureonApp = () => {
       navLinksContainer.classList.toggle('open');
     });
 
-    // Close menu when clicking any nav link
+    // Close menu when clicking any nav link or the mobile cta button
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navLinksContainer.classList.remove('open');
       });
+    });
+
+    const mobileCtaBtn = navLinksContainer.querySelector('.mobile-nav-cta .btn');
+    if (mobileCtaBtn) {
+      mobileCtaBtn.addEventListener('click', () => {
+        navLinksContainer.classList.remove('open');
+      });
+    }
+
+    // Close when clicking outside header
+    document.addEventListener('click', (e) => {
+      if (navLinksContainer.classList.contains('open') && !mainNav.contains(e.target)) {
+        navLinksContainer.classList.remove('open');
+      }
     });
   }
 
