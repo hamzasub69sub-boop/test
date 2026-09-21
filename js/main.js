@@ -42,28 +42,33 @@ const initAureonApp = () => {
 
   // Mobile navigation toggle
   if (mobileToggle && navLinksContainer) {
-    mobileToggle.addEventListener('click', () => {
-      navLinksContainer.classList.toggle('open');
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinksContainer.classList.toggle('open');
+      mobileToggle.classList.toggle('active', isOpen);
+      mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
+
+    const closeMobileMenu = () => {
+      navLinksContainer.classList.remove('open');
+      mobileToggle.classList.remove('active');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+    };
 
     // Close menu when clicking any nav link or the mobile cta button
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navLinksContainer.classList.remove('open');
-      });
+      link.addEventListener('click', closeMobileMenu);
     });
 
     const mobileCtaBtn = navLinksContainer.querySelector('.mobile-nav-cta .btn');
     if (mobileCtaBtn) {
-      mobileCtaBtn.addEventListener('click', () => {
-        navLinksContainer.classList.remove('open');
-      });
+      mobileCtaBtn.addEventListener('click', closeMobileMenu);
     }
 
     // Close when clicking outside header
     document.addEventListener('click', (e) => {
       if (navLinksContainer.classList.contains('open') && !mainNav.contains(e.target)) {
-        navLinksContainer.classList.remove('open');
+        closeMobileMenu();
       }
     });
   }
