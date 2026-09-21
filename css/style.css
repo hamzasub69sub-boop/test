@@ -69,10 +69,15 @@ html {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
@@ -83,6 +88,18 @@ body {
   background-size: 100% 100%, 28px 28px;
 }
 
+/* Container for glowing ambient background orbs with strict clipping */
+.ambient-glow-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* Subtle background glowing ambient orbs */
 .ambient-glow {
   position: absolute;
@@ -91,6 +108,7 @@ body {
   filter: blur(120px);
   z-index: 0;
   opacity: 0.4;
+  max-width: 100vw;
 }
 
 .glow-cyan {
@@ -2067,6 +2085,18 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+  .ambient-glow {
+    max-width: 100vw;
+    filter: blur(80px);
+    opacity: 0.25;
+  }
+
+  .glow-cyan,
+  .glow-indigo {
+    width: 280px !important;
+    height: 280px !important;
+  }
+
   /* Site Navigation Floating Bar */
   .site-nav {
     top: 10px;
