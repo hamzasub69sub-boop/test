@@ -127,10 +127,10 @@ const initAureonApp = () => {
     const particleCount = Math.min(Math.floor((window.innerWidth * 1200) / 10000), 130);
     const particles = [];
     const colors = [
-      'rgba(0, 240, 255, ',     // Cyan primary
-      'rgba(99, 102, 241, ',    // Indigo
-      'rgba(16, 185, 129, ',    // Emerald accent
-      'rgba(255, 255, 255, '     // Pure white accent
+      'rgba(83, 52, 131, ',     // #533483
+      'rgba(15, 52, 96, ',      // #0F3460
+      'rgba(22, 33, 62, ',      // #16213E
+      'rgba(26, 26, 46, '       // #1A1A2E
     ];
 
     class Particle {
